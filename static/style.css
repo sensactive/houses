@@ -1,0 +1,271 @@
+body {
+    background: #a3aab1;
+}
+
+
+.container {
+    background: #ffffff;
+    margin-top: 70px;
+    padding: 0;
+}
+
+.nav {
+    padding-top: 38px;
+}
+
+.nav-link {
+    text-transform: uppercase;
+    font-family: Ubuntu, sans-serif;
+    font-weight: bolder;
+    font-size: 15px;
+    color: #9ba7b4;
+}
+
+.row {
+    margin: 0;
+}
+
+.info {
+    padding: 25px 0;
+}
+
+.info a {
+    text-decoration: none;
+}
+
+.phone {
+    color: #8fc74a;
+    font-family: 'Ubuntu-light', sans-serif;
+    font-size: 28.5px;
+}
+
+@media (max-width: 474px) {
+    .house {
+        display: none !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px),(min-width: 576px) and (max-width: 767px), (max-width: 575px) {
+    .info div {
+        padding: 25px 0;
+    }
+
+    .container {
+        margin: 0;
+        max-width: 100%;
+    }
+
+    .headerTyp {
+        font-size: 16px ;
+    }
+
+    .about {
+        height: 430px;
+    }
+
+    .aboutCont {
+        border: 3px white solid;
+        margin: 24px !important;
+        flex-wrap: wrap;
+        padding: 20px 29px;
+    }
+}
+
+.house img {
+    height: 284px;
+}
+
+.types {
+    padding-top: 100px;
+}
+
+.typesHeader {
+    font-family: 'Ubuntu Light', sans-serif;
+    font-size: 33px;
+    text-transform: uppercase;
+}
+
+.headerTy img:nth-child(n) {
+    width: 80%;
+}
+
+.typeItem {
+    margin: 15px 0;
+}
+
+.typeItem h2 {
+    text-transform: uppercase;
+}
+
+.typeItem img {
+    max-width: 100%;
+}
+
+.price {
+    font-weight: bold;
+    font-family: "Ubuntu Light", sans-serif;
+    font-size: 20px;
+}
+
+.itemBtn {
+    background: #8fc74a;
+    border-radius: 50px;
+    text-align: center;
+    font-family: Algerian sans-serif;
+}
+
+.about {
+    background: url("/static/images/about.jpg") no-repeat;
+    background-size: cover;
+    min-height: 400px;
+}
+
+.aboutCont {
+    max-width: 585px;
+    border: 5px white solid;
+    margin: 105px auto;
+    flex-wrap: wrap;
+    padding: 20px 29px;
+}
+
+.aboutHead{
+    font-family: "Ubuntu Light", sans-serif;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.aboutCont p{
+    font-family: Ubuntu, sans-serif;
+    font-size: 12px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.aboutCont img {
+    height: 65%;
+    width: 65%;
+    margin: 10px;
+}
+
+.news {
+    background: #f7f7f7;
+    min-height: 400px;
+}
+
+.news .typesHeader {
+    padding-top: 30px;
+}
+
+.newsItem img {
+    max-width: 250px;
+}
+
+.newsPic {
+    margin: 100px auto;
+}
+
+.newsPic p{
+    max-width: 250px;
+    background: #ffffff;
+    padding: 5px 10px;
+    font-family: "Ubuntu Light", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #6e7b82;
+}
+
+.labelDate {
+    position: relative;
+    top: -178px;
+    z-index: 10;
+}
+
+.labelDate p{
+    margin: 0;
+    padding: 0;
+    width: 40px;
+    line-height: 1;
+    color: #9ba7b4;
+    font-family: "Ubuntu Light", sans-serif;
+    font-size: 11px;
+}
+
+.labelDate p:first-child {
+    font-size: 22px;
+}
+
+.galleryPic {
+    padding-top: 50px;
+}
+
+.galleryPic .left img{
+    width: 80%;
+    border-right: 8px #ffffff solid;
+}
+
+.galleryPic .right img {
+    width: 81%;
+}
+
+.footer {
+    height: 100px;
+    background: #f7f7f7;
+    margin-top: 40px;
+}
+
+.text {
+    width: 100px;
+    font-family: PTSans, sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 1.29;
+    text-align: left;
+    color: #868e91;
+}
+
+
+
+
+.iconsSocial div{
+    margin: 0 3px;
+    height: 24px;
+    width: 24px;
+    border: 1px #b6bdc6 solid;
+    border-radius: 50%;
+}
+
+.iconsSocial i{
+    font-size: 12px;
+    line-height: 1.29;
+    text-align: left;
+    color: #868e91;
+}
+
+.iconsSocial a{
+    text-decoration: none;
+}
+
+.footerLeft {
+    margin-left: 10px;
+}
+
+.footerRight .text {
+    text-transform: lowercase;
+    width: 136px;
+}
+
+.userInfo {
+    margin: auto;
+}
+
+.contactBtn {
+    margin: 15px 0;
+    border-radius: 50px;
+    background: #8fc74a;
+    font-family: Algerian sans-serif;
+}
+
+.formFon {
+    background: #8fc74a;
+    font-family: Algerian sans-serif;
+}

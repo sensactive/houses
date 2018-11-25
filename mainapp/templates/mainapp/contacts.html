@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href={% static "style.css" %}>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <ul class="nav justify-content-center d-none d-lg-flex">
+            <li class="nav-item">
+                <a class="nav-link" href="/">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/projects/">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contacts/">Contacts</a>
+            </li>
+        </ul>
+        <div class="pos-f-t d-lg-none">
+            <div class="collapse row bg-dark justify-content-center" id="navbarToggleExternalContent">
+                <a class="nav-link" href="/">About</a>
+                <a class="nav-link" href="/projects/">Projects</a>
+                <a class="nav-link" href="/contacts/">Contacts</a>
+            </div>
+            <nav class="navbar navbar-dark bg-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+        </div>
+        <div class="info d-flex flex-md-row justify-content-around align-items-center flex-column">
+            <div class="phone d-flex">+2 495 <b>134-27-72</b></div>
+            <a href="/">
+                <div class="logo d-flex">
+                    <img src={% static "images/LOGO.png" %} alt="logo">
+                </div>
+            </a>
+            <div class="ur-question d-flex">
+                <a href="#"><img src={% static "images/qbutton.png" %} alt="qbutton"></a>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="userInfo col-6 text-center">
+            <label for="basic-url">Напишите нам</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text formFon" id="basic-addon3">ФИО:</span>
+                </div>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text formFon" id="basic-addon3">Почта:</span>
+                </div>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text formFon">Текст:</span>
+                </div>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+            </div>
+            <button class="contactBtn">Отправить</button>
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A6a995a3f1cb82d7bb430ea80de653190d82d152d4baf89d26029cf7b82af831f&amp;width=100%25&amp;height=512&amp;lang=ru_RU&amp;scroll=true"></script>
+        </div>
+        <div class="footer d-flex align-items-center justify-content-md-between justify-content-around flex-column flex-md-row">
+            <div class="footerLeft row">
+                <div class="text d-flex align-items-center">share with your friends</div>
+                <div class="iconsSocial d-flex">
+                    <a href="#">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <i class="fab fa-vk"></i>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="footerRight">
+                <div class="text">&copy; woloshino  2011-2014</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
