@@ -2,7 +2,6 @@ body {
     background: #a3aab1;
 }
 
-
 .container {
     background: #ffffff;
     margin-top: 70px;
@@ -19,6 +18,14 @@ body {
     font-weight: bolder;
     font-size: 15px;
     color: #9ba7b4;
+}
+
+.nav-link_active {
+    text-transform: uppercase;
+    font-family: Ubuntu, sans-serif;
+    font-weight: bolder;
+    font-size: 15px;
+    color: #8fc74a;
 }
 
 .row {

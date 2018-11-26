@@ -16,73 +16,22 @@
 <body>
 <div class="container">
     <div class="header">
-        <ul class="nav justify-content-center d-none d-lg-flex">
-            <li class="nav-item">
-                <a class="nav-link" href="/">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/projects/">Projects</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/contacts/">Contacts</a>
-            </li>
-        </ul>
-        <div class="pos-f-t d-lg-none">
-            <div class="collapse row bg-dark justify-content-center" id="navbarToggleExternalContent">
-                <a class="nav-link" href="/">About</a>
-                <a class="nav-link" href="/projects/">Projects</a>
-                <a class="nav-link" href="/contacts/">Contacts</a>
-            </div>
-            <nav class="navbar navbar-dark bg-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </nav>
-        </div>
+        {% include 'include/inc_menu.html' %}
         <div class="info d-flex flex-md-row justify-content-around align-items-center flex-column">
             <div class="phone d-flex">+2 495 <b>134-27-72</b></div>
-            <a href="/">
+            <a href={% url 'main' %}>
                 <div class="logo d-flex">
                     <img src={% static  "images/LOGO.png" %} alt="logo">
                 </div>
             </a>
             <div class="ur-question d-flex">
-                <a href="#"><img src={% static "images/qbutton.png" %} alt="qbutton"></a>
+                <a href={% url 'contacts' %}><img src={% static "images/qbutton.png" %} alt="qbutton"></a>
             </div>
         </div>
     </div>
-</div>
-{% block content %}
-{% endblock %}
-<div class="footer d-flex align-items-center justify-content-md-between justify-content-around flex-column flex-md-row">
-    <div class="footerLeft row">
-        <div class="text d-flex align-items-center">share with your friends</div>
-        <div class="iconsSocial d-flex">
-            <a href="#">
-                <div class="d-flex justify-content-center align-items-center">
-                    <i class="fab fa-instagram"></i>
-                </div>
-            </a>
-            <a href="">
-                <div class="d-flex justify-content-center align-items-center">
-                    <i class="fab fa-vk"></i>
-                </div>
-            </a>
-            <a href="">
-                <div class="d-flex justify-content-center align-items-center">
-                    <i class="fab fa-twitter"></i>
-                </div>
-            </a>
-            <a href="">
-                <div class="d-flex justify-content-center align-items-center">
-                    <i class="fab fa-facebook-f"></i>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="footerRight">
-        <div class="text">&copy; woloshino  2011-2014</div>
-    </div>
+    {% block content %}
+    {% endblock %}
+    {% include 'include/inc_footer.html' %}
 </div>
 </body>
 </html>

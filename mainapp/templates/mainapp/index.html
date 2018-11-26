@@ -16,42 +16,17 @@
                 </div>
             </div>
             <div class="typeItems row">
-                <div class="typeItem col-md-3 col-sm-6 col-12 text-center">
-                    <img src={% static "images/types/aspen.jpg" %} alt="1">
-                    <h2>aspen</h2>
-                    <p class="d-none d-lg-block">
-                        House area - 121.4 m2.
-                        Not a big compact and cozy house of wood. Gable roof. Second
-                        floor - attic. Space of the house clearly defined by function. To ...
-                    </p>
-                </div>
-                <div class="typeItem col-md-3 col-sm-6 col-12 text-center">
-                    <img src={% static "images/types/heaven.jpg" %} alt="2">
-                    <h2>heaven</h2>
-                    <p class="d-none d-lg-block">
-                        House area - 121.4 m2.
-                        Not a big compact and cozy house of wood. Gable roof. Second
-                        floor - attic. Space of the house clearly defined by function. To ...
-                    </p>
-                </div>
-                <div class="typeItem col-md-3 col-sm-6 d-none d-sm-block text-center">
-                    <img src={% static "images/types/vei.jpg" %} alt="3">
-                    <h2>veil</h2>
-                    <p class="d-none d-lg-block">
-                        House area - 121.4 m2.
-                        Not a big compact and cozy house of wood. Gable roof. Second
-                        floor - attic. Space of the house clearly defined by function. To ...
-                    </p>
-                </div>
-                <div class="typeItem col-md-3 col-sm-6 d-none d-sm-block text-center">
-                    <img src={% static "images/types/tower.jpg" %} alt="4">
-                    <h2>tower</h2>
-                    <p class="d-none d-lg-block">
-                        House area - 121.4 m2.
-                        Not a big compact and cozy house of wood. Gable roof. Second
-                        floor - attic. Space of the house clearly defined by function. To ...
-                    </p>
-                </div>
+                {% for item in typeItems %}
+                    <div class="typeItem col-md-6 col-12 text-center">
+                        <img src={% static item.src  %} alt="1">
+                        <h2>{{ item.name }}</h2>
+                        <p class="d-none d-lg-block">
+                            House area - 121.4 m2.
+                            Not a big compact and cozy house of wood. Gable roof. Second
+                            floor - attic. Space of the house clearly defined by function. To ...
+                        </p>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <div class="about text-center d-flex justify-content-center">
