@@ -2,9 +2,7 @@
 {% load static %}
 {% block content %}
     <div class="content">
-        <div class="house d-flex justify-content-center">
-            <img src={% static "images/house2.png" %} alt="house2">
-        </div>
+        {% include 'include/inc_logo.html' %}
         <div class="types">
             <div class="typesHeader row justify-content-between">
                 <div class="headerTy col-4 d-flex justify-content-center align-items-center">
