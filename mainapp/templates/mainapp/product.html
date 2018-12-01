@@ -1,0 +1,23 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+    {{ qw }}
+    {% for product in products %}
+        {% if product.category ==  qw  %}
+        <div class="typeItems row">
+            <a href="{% url 'products' %}" class="category typeItem col-md-6 col-12 text-center">
+                <div>
+                    <img src={{ product.img.url }} alt="1">
+                    <h2>{{ product.name }}</h2>
+                    <p>{{ product.info }}</p>
+                    <div>
+                        <p class="price">Цена от: {{ product.price }} руб.</p>
+                        <button class="itemBtn">В корзину</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

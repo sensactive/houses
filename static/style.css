@@ -276,3 +276,13 @@ body {
     background: #8fc74a;
     font-family: Algerian sans-serif;
 }
+
+.category {
+    text-decoration: none;
+    color: #000;
+}
+
+.category:hover {
+    text-decoration: none;
+    color: #8fc74a;
+}

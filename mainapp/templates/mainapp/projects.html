@@ -8,26 +8,24 @@
                 <div class="headerTy col-4 d-flex justify-content-center align-items-center">
                     <img class="d-flex" src={% static "images/Group-left.png" %} alt="leftPic">
                 </div>
-                <div class="headerTyp col-4 d-flex justify-content-center align-items-center text-center">4 house types</div>
+                <div class="headerTyp col-4 d-flex justify-content-center align-items-center text-center">{{ len_items }} house types</div>
                 <div class="headerTy col-4 d-flex justify-content-center align-items-center">
                     <img class="d-flex" src={% static "images/Group-right.png" %} alt="rightPic">
                 </div>
             </div>
             <div class="typeItems row">
                 {% for item in items %}
-                    <div class="typeItem col-md-6 col-12 text-center">
-                        <img src={% static item.src %} alt="1">
-                        <h2>{{ item.name }}</h2>
-                        <p>
-                            House area - 121.4 m2.
-                            Not a big compact and cozy house of wood. Gable roof. Second
-                            floor - attic. Space of the house clearly defined by function. To ...
-                        </p>
+                    <a href="{% url 'products' %}" class="category typeItem col-md-6 col-12 text-center">
                         <div>
-                            <p class="price">Цена: {{ item.price }} руб.</p>
-                            <button class="itemBtn">В корзину</button>
+                            <img src={{ item.img.url }} alt="1">
+                            <h2>{{ item.name }}</h2>
+                            <p>{{ item.info }}</p>
+                            <div>
+                                <p class="price">Цена от: {{ item.price }} руб.</p>
+                                <button class="itemBtn">В корзину</button>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 {% endfor %}
             </div>
         </div>
