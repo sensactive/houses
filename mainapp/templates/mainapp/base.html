@@ -17,14 +17,14 @@
 <div class="container">
     <div class="header">
         {% include 'include/inc_menu.html' %}
-        <div class="info d-flex flex-md-row justify-content-around align-items-center flex-column">
-            <div class="phone d-flex">+2 495 <b>134-27-72</b></div>
-            <a href={% url 'main' %}>
-                <div class="logo d-flex">
+        <div class="info row text-center">
+            <div class="phone col-lg-4">+2 495 <b>134-27-72</b></div>
+            <a class="col-lg-4" href={% url 'main' %}>
+                <div class="logo">
                     <img src={% static  "images/LOGO.png" %} alt="logo">
                 </div>
             </a>
-            <div class="ur-question d-flex">
+            <div class="ur-question col-lg-4">
                 <a href={% url 'contacts' %}><img src={% static "images/qbutton.png" %} alt="qbutton"></a>
             </div>
         </div>

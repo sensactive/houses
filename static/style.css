@@ -282,6 +282,10 @@ body {
     color: #000;
 }
 
+.category img {
+    border-radius: 25px;
+}
+
 .category:hover {
     text-decoration: none;
     color: #8fc74a;
