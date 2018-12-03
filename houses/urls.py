@@ -17,14 +17,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from mainapp.views import main_view, projects_view, contacts_view, products_view
+from mainapp.views import main_view, projects_view, contacts_view, products_of_categories_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_view, name='main'),
     path('projects/', projects_view, name='projects'),
     path('contacts/', contacts_view, name='contacts'),
-    path('products/', products_view, name='products')
+    path('projects/<pk>', products_of_categories_view, name='products_of_categories')
 ]
 
 if settings.DEBUG:

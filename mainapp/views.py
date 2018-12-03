@@ -15,7 +15,7 @@ def projects_view(request):
 def contacts_view(request):
     return render(request, 'mainapp/contacts.html')
 
-def products_view(request):
-    category = Category.objects.first()
-    products = Product.objects.all()
-    return render(request, 'mainapp/product.html', {'products': products, 'qw': category})
+def products_of_categories_view(request, pk):
+    category = Category.objects.get(pk=pk)
+    products = Product.objects.filter(category=category)
+    return render(request, 'mainapp/product.html', {'products': products, 'category': category})
