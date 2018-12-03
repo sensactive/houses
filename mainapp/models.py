@@ -16,7 +16,7 @@ class Product(models.Model):
     info = models.TextField(verbose_name='Описание проекта')
     price = models.PositiveIntegerField(verbose_name='Цена')
     img = models.ImageField(upload_to='products/%Y/%m/%d', verbose_name='Картинка проекта')
-    category = models.ForeignKey(Category, on_delete=models.SET('NULL'), null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name
