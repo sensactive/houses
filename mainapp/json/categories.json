@@ -1,0 +1,6 @@
+[
+  {"name": "Aspen", "info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut commodi eaque expedita, facere fuga impedit iure laboriosam laborum minus neque nulla, quaerat quasi quisquam reiciendis sunt vitae. Aut, voluptate!", "price": 300000, "img":"./categories/aspen.jpg"},
+  {"name": "Heaven", "info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut commodi eaque expedita, facere fuga impedit iure laboriosam laborum minus neque nulla, quaerat quasi quisquam reiciendis sunt vitae. Aut, voluptate!", "price": 350000, "img":"./categories/heaven.jpg"},
+  {"name": "Veil", "info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut commodi eaque expedita, facere fuga impedit iure laboriosam laborum minus neque nulla, quaerat quasi quisquam reiciendis sunt vitae. Aut, voluptate!", "price": 400000, "img":"./categories/veil.jpg"},
+  {"name": "Tower", "info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aut commodi eaque expedita, facere fuga impedit iure laboriosam laborum minus neque nulla, quaerat quasi quisquam reiciendis sunt vitae. Aut, voluptate!", "price": 400000, "img":"./categories/tower.jpg"}
+]

@@ -1,0 +1,20 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="content">
+        <div class="userInfo col-6">
+            <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
+                {% csrf_token %}
+                {{ login_form.as_p }}
+                <br>
+                <button class="form-control">Войти</button>
+            </form>
+            <button class="btn btn-round form-control register">
+                <a href="{% url 'auth:register' %}" class="">
+                    зарегистрироваться
+                </a>
+            </button>
+        </div>
+    </div>
+{% endblock %}

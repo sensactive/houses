@@ -290,3 +290,18 @@ body {
     text-decoration: none;
     color: #8fc74a;
 }
+
+.errorlist {
+    list-style-type: none;
+    color: red;
+    font-size: 10px;
+    padding: 0;
+}
+
+.userInfo button{
+    background: #8fc74a;
+}
+
+.register {
+    background: none!important;
+}

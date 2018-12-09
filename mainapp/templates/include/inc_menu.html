@@ -18,6 +18,20 @@
                 {% endif %}
            href={% url 'contacts' %}>Contacts</a>
     </li>
+    {% if user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'auth:edit' %}">
+                {{ user.username|default:'User' }}
+            </a>
+        </li>
+    {% endif %}
+    <li class="nav-item">
+        {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'auth:logout' %}">logout</a>
+        {% else %}
+            <a class="nav-link" href="{% url 'auth:login' %}">login</a>
+        {% endif %}
+    </li>
 </ul>
 <div class="pos-f-t d-lg-none">
     <div class="collapse row bg-dark justify-content-center" id="navbarToggleExternalContent">
@@ -33,6 +47,16 @@
                 {% else %} nav-link
                 {% endif %}
            href={% url 'contacts' %}>Contacts</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'auth:edit' %}">
+                {{ user.first_name|default:'Пользователь' }}
+            </a>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'auth:logout' %}">выйти</a>
+        {% else %}
+            <a class="nav-link" href="{% url 'auth:login' %}">войти</a>
+        {% endif %}
     </div>
     <nav class="navbar navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
