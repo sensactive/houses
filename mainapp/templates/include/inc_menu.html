@@ -11,12 +11,24 @@
                 {% endif %}
            href={% url 'main' %}>About</a>
     </li>
+
     <li class="nav-item">
         <a class={% if request.resolver_match.url_name == 'projects' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}
            href={% url 'projects' %}>Projects
         </a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Our houses
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href={% url 'products_of_categories' pk=0 %}>All houses</a>
+            {% for cat in categories %}
+                <a class="dropdown-item" href={% url 'products_of_categories' pk=cat.pk %}>Project {{ cat.name }}</a>
+            {% endfor %}
+        </div>
     </li>
     <li class="nav-item">
         <a class={% if request.resolver_match.url_name == 'contacts' %} 'nav-link nav-link_active'
@@ -41,7 +53,9 @@
 </ul>
 <div class="pos-f-t d-lg-none">
     <div class="collapse row bg-dark justify-content-center" id="navbarToggleExternalContent">
-        <a class="nav-link" href={% url 'basketapp:view' %}><i class="fas fa-shopping-cart"></i>{{ basket|length }}</a>
+        <a class="nav-link" href={% url 'basketapp:view' %}><i class="fas fa-shopping-cart"></i>
+            <span>{{ basket|length }}</span>
+        </a>
         <a class={% if request.resolver_match.url_name == 'main' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}
@@ -50,6 +64,15 @@
                 {% else %} nav-link
                 {% endif %}
            href={% url 'projects' %}>Projects</a>
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Our houses
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href={% url 'products_of_categories' pk=0 %}>All houses</a>
+            {% for cat in categories %}
+                <a class="dropdown-item" href={% url 'products_of_categories' pk=cat.pk %}>Project {{ cat.name }}</a>
+            {% endfor %}
+        </div>
         <a class={% if request.resolver_match.url_name == 'contacts' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}

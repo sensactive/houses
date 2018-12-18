@@ -3,7 +3,9 @@ from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditF
 from django.contrib import auth
 from django.urls import reverse
 from basketapp.models import Basket
+from mainapp.models import Category
 
+categories = Category.objects.all()
 
 def login(request):
 
@@ -20,7 +22,10 @@ def login(request):
     else:
         login_form = ShopUserLoginForm()
 
-    content = {'login_form': login_form}
+    content = {
+        'login_form': login_form,
+        'categories': categories
+    }
 
     return render(request, 'login.html', content)
 
@@ -41,7 +46,10 @@ def register(request):
     else:
         register_form = ShopUserRegisterForm()
 
-    content = {'register_form': register_form}
+    content = {
+        'register_form': register_form,
+        'categories': categories
+    }
 
     return render(request, 'register.html', content)
 
@@ -58,6 +66,10 @@ def edit(request):
     else:
         edit_form = ShopUserEditForm(instance=request.user)
 
-    content = {'edit_form': edit_form, 'basket': basket}
+    content = {
+        'edit_form': edit_form,
+        'basket': basket,
+        'categories': categories
+    }
 
     return render(request, 'edit.html', content)
