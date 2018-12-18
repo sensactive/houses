@@ -1,5 +1,11 @@
 <ul class="nav justify-content-center d-none d-lg-flex">
     <li class="nav-item">
+        <a class="nav-link" href={% url 'basketapp:view' %}>
+            <i class="fas fa-shopping-cart"></i>
+            <span>{% if basket %}{{ basket|length }}{% endif %}</span>
+        </a>
+    </li>
+    <li class="nav-item">
         <a class={% if request.resolver_match.url_name == 'main' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}
@@ -35,6 +41,7 @@
 </ul>
 <div class="pos-f-t d-lg-none">
     <div class="collapse row bg-dark justify-content-center" id="navbarToggleExternalContent">
+        <a class="nav-link" href={% url 'basketapp:view' %}><i class="fas fa-shopping-cart"></i>{{ basket|length }}</a>
         <a class={% if request.resolver_match.url_name == 'main' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}
@@ -48,8 +55,8 @@
                 {% endif %}
            href={% url 'contacts' %}>Contacts</a>
         {% if user.is_authenticated %}
-            <a href="{% url 'auth:edit' %}">
-                {{ user.first_name|default:'Пользователь' }}
+            <a class="nav-link" href="{% url 'auth:edit' %}">
+                {{ user.username|default:'User' }}
             </a>
         {% endif %}
         {% if user.is_authenticated %}
