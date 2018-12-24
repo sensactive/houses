@@ -20,13 +20,13 @@
         {% include 'include/inc_menu.html' %}
         <div class="info row text-center">
             <div class="phone col-lg-4">+2 495 <b>134-27-72</b></div>
-            <a class="col-lg-4" href={% url 'main' %}>
+            <a class="col-lg-4" href={% url 'mainapp:main' %}>
                 <div class="logo">
                     <img src={% static  "images/LOGO.png" %} alt="logo">
                 </div>
             </a>
             <div class="ur-question col-lg-4">
-                <a href={% url 'contacts' %}><img src={% static "images/qbutton.png" %} alt="qbutton"></a>
+                <a href={% url 'mainapp:contacts' %}><img src={% static "images/qbutton.png" %} alt="qbutton"></a>
             </div>
         </div>
     </div>

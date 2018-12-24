@@ -9,11 +9,12 @@ def main_view(request):
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
+
     len_items = len(categories)
     content = {
         'categories': categories,
         'len_items': len_items,
-        'basket': basket
+        'basket': basket,
     }
     return render(request, 'mainapp/index.html',  content)
 
@@ -21,6 +22,7 @@ def projects_view(request):
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
+
     len_items = len(categories)
     content = {
         'categories': categories,

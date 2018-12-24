@@ -2,21 +2,26 @@
     <li class="nav-item">
         <a class="nav-link" href={% url 'basketapp:view' %}>
             <i class="fas fa-shopping-cart"></i>
-            <span>{% if basket %}{{ basket|length }}{% endif %}</span>
+            {% if basket %}
+                <span>
+                    {{ basket.0.total_cost|floatformat:0 }} руб
+                    ({{ basket.0.total_quantity }} шт)
+                </span>
+            {% endif %}
         </a>
     </li>
     <li class="nav-item">
         <a class={% if request.resolver_match.url_name == 'main' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}
-           href={% url 'main' %}>About</a>
+           href={% url 'mainapp:main' %}>About</a>
     </li>
 
     <li class="nav-item">
         <a class={% if request.resolver_match.url_name == 'projects' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}
-           href={% url 'projects' %}>Projects
+           href={% url 'mainapp:projects' %}>Projects
         </a>
     </li>
     <li class="nav-item dropdown">
@@ -24,9 +29,9 @@
             Our houses
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href={% url 'products_of_categories' pk=0 %}>All houses</a>
+            <a class="dropdown-item" href={% url 'mainapp:products_of_categories' pk=0 %}>All houses</a>
             {% for cat in categories %}
-                <a class="dropdown-item" href={% url 'products_of_categories' pk=cat.pk %}>Project {{ cat.name }}</a>
+                <a class="dropdown-item" href={% url 'mainapp:products_of_categories' pk=cat.pk %}>Project {{ cat.name }}</a>
             {% endfor %}
         </div>
     </li>
@@ -34,7 +39,7 @@
         <a class={% if request.resolver_match.url_name == 'contacts' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}
-           href={% url 'contacts' %}>Contacts</a>
+           href={% url 'mainapp:contacts' %}>Contacts</a>
     </li>
     {% if user.is_authenticated %}
         <li class="nav-item">
@@ -59,24 +64,24 @@
         <a class={% if request.resolver_match.url_name == 'main' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}
-           href={% url 'main' %}>About</a>
+           href={% url 'mainapp:main' %}>About</a>
         <a class={% if request.resolver_match.url_name == 'projects' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}
-           href={% url 'projects' %}>Projects</a>
+           href={% url 'mainapp:projects' %}>Projects</a>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Our houses
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href={% url 'products_of_categories' pk=0 %}>All houses</a>
+            <a class="dropdown-item" href={% url 'mainapp:products_of_categories' pk=0 %}>All houses</a>
             {% for cat in categories %}
-                <a class="dropdown-item" href={% url 'products_of_categories' pk=cat.pk %}>Project {{ cat.name }}</a>
+                <a class="dropdown-item" href={% url 'mainapp:products_of_categories' pk=cat.pk %}>Project {{ cat.name }}</a>
             {% endfor %}
         </div>
         <a class={% if request.resolver_match.url_name == 'contacts' %} 'nav-link nav-link_active'
                 {% else %} nav-link
                 {% endif %}
-           href={% url 'contacts' %}>Contacts</a>
+           href={% url 'mainapp:contacts' %}>Contacts</a>
         {% if user.is_authenticated %}
             <a class="nav-link" href="{% url 'auth:edit' %}">
                 {{ user.username|default:'User' }}

@@ -15,7 +15,7 @@
             </div>
             <div class="typeItems row">
                 {% for item in categories %}
-                    <a href="{% url 'products_of_categories' pk=item.pk %}" class="category typeItem col-md-6 col-12 text-center">
+                    <a href="{% url 'mainapp:products_of_categories' pk=item.pk %}" class="category typeItem col-md-6 col-12 text-center">
                         <div>
                             <img src={{ item.img.url }} alt="1">
                             <h2>{{ item.name }}</h2>
