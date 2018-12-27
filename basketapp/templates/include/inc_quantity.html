@@ -1,0 +1,45 @@
+{% load static %}
+{% block quantity %}
+    <div class="counter">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr class="text-center">
+                <th scope="col">Project</th>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in basket_items %}
+                <tr class="text-center">
+                    <th>{{ item.product.category.name }}</th>
+                    <td>{{ item.product.name }}</td>
+                    <td>
+                        <div class="text-center">
+                            <input class="text-center col-2" type="number" name="{{ item.pk }}" value="{{ item.quantity }}">
+                        </div>
+                    </td>
+                    <td>{{ item.product_cost }}</td>
+                    <td>
+                        <button class="btn btn-round removeBtn">
+                            <a href="{% url 'basketapp:remove' pk=item.pk %}" class="">
+                                удалить
+                            </a>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="totalCost nav-link">
+            {% if basket_items %}
+                <div class="col-12 text-right">
+                    В корзине {{ basket_items.0.total_quantity }} товаров<br>
+                    общей стоимостью {{ basket_items.0.total_cost }} руб
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

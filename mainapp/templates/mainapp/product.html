@@ -1,0 +1,13 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="col-12 text-center product typeItem">
+        <img src={{ product.img.url }} alt="1">
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.info }}</p>
+        <p class="price">Цена от: {{ product.price }} руб.</p>
+        <a href={% url 'basketapp:add' pk=product.pk %}>
+            <button class="itemBtn">В корзину</button>
+        </a>
+    </div>
+{% endblock %}

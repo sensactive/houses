@@ -9,7 +9,10 @@ categories = Category.objects.all()
 
 def login(request):
 
+    next = request.GET['next'] if 'next' in request.GET.keys() else ''
+
     if request.method == 'POST':
+
         login_form = ShopUserLoginForm(data=request.POST)
         if login_form.is_valid():
             username = request.POST['username']
@@ -18,13 +21,17 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('main'))
+                if 'next' in request.POST.keys():
+                    return HttpResponseRedirect(request.POST['next'])
+                else:
+                    return HttpResponseRedirect(reverse('mainapp:main'))
     else:
         login_form = ShopUserLoginForm()
 
     content = {
         'login_form': login_form,
-        'categories': categories
+        'categories': categories,
+        'next': next
     }
 
     return render(request, 'login.html', content)
@@ -32,7 +39,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('main'))
+    return HttpResponseRedirect(reverse('mainapp:main'))
 
 
 def register(request):

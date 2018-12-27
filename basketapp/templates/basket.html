@@ -1,30 +1,9 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 {% block content%}
-    <title>Корзина</title>
-    {% for item in basket_items %}
+    <div class="col-12 text-center">
+        <h2>Корзина</h2>
+    </div>
 
-        <div class="row text-center">
-            <div class="col-2">
-                {{ item.product.category.name }}
-            </div>
-            <div class="col-4">
-                {{ item.product.name }}
-            </div>
-            <div class="col-2">
-                <input class="col-6 text-center" type="number" name="{{ item.pk }}" min="0" value="{{ item.quantity }}">
-            </div>
-            <div class="col-2">
-                {{ item.product_cost }}
-            </div>
-
-            <div class="col-2">
-                <button class="btn btn-round">
-                    <a href="{% url 'basketapp:remove' pk=item.pk %}" class="">
-                        удалить
-                    </a>
-                </button>
-            </div>
-        </div>
-    {% endfor %}
+    {% include 'include/inc_quantity.html' %}
 {% endblock %}

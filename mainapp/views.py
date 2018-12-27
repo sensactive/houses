@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 from basketapp.models import Basket
 
@@ -58,3 +58,15 @@ def products_of_categories_view(request, pk):
         'categories': categories
     }
     return render(request, 'mainapp/products.html', content)
+
+def product(request, pk):
+    one_product = get_object_or_404(Product, pk=pk)
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
+    content = {
+        'categories': categories,
+        'product': one_product,
+        'basket': basket
+    }
+    return render(request, 'mainapp/product.html', content)

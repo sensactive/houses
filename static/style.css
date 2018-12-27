@@ -306,3 +306,15 @@ body {
 .register {
     background: none!important;
 }
+
+.product img {
+    border-radius: 25px;
+}
+
+.totalCost {
+    margin: 20px 80px;
+}
+
+.removeBtn a{
+    color: red;
+}
