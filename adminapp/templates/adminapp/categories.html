@@ -1,0 +1,64 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'include/inc_admin_menu.html' %}
+    <h2 class="text-center">Categories(Projects)</h2>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr class="text-center">
+            <th scope="col">Name</th>
+            <th scope="col">Info</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in objects %}
+            <tr>
+                <th scope="row">{{ object.name }}</th>
+                <td>
+                    {{ object.info }}
+                </td>
+                <td>{{ object.price }}</td>
+                <td>
+                    {% if object.img %}
+                        <a href="/media/{{ object.img }}" target="_blank">image</a>
+                    {% else %}
+                        No image
+                    {% endif %}
+                </td>
+                <td>
+                    {% if object.is_active == True %}
+                    Active
+                    {% else %}
+                    No active
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary">
+                            <a class="user" href={% url 'adminapp:category_update' pk=object.pk %}>
+                                Edit
+                            </a>
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                            <a class="user" href={% url 'adminapp:category_delete' pk=object.pk %}>
+                                Delete
+                            </a>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-center">
+        <button type="button" class="btn btn-secondary">
+            <a class="user" href={% url 'adminapp:category_create' %}>
+                New Category
+            </a>
+        </button>
+    </div>
+{% endblock %}

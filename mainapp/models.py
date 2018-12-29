@@ -7,6 +7,7 @@ class Category(models.Model):
     info = models.TextField(verbose_name='Описание категории')
     price = models.PositiveIntegerField(verbose_name='Цена от')
     img = models.ImageField(upload_to='categories/%Y/%m/%d', verbose_name='Картинка категории')
+    is_active = models.BooleanField(verbose_name='активна', default=True)
 
     def __str__(self):
         return self.name

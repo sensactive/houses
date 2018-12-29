@@ -12,15 +12,15 @@
     </li>
     <li class="nav-item">
         <a class={% if request.resolver_match.url_name == 'main' %} 'nav-link nav-link_active'
-                {% else %} nav-link
-                {% endif %}
+        {% else %} nav-link
+        {% endif %}
            href={% url 'mainapp:main' %}>About</a>
     </li>
 
     <li class="nav-item">
         <a class={% if request.resolver_match.url_name == 'projects' %} 'nav-link nav-link_active'
-                {% else %} nav-link
-                {% endif %}
+        {% else %} nav-link
+        {% endif %}
            href={% url 'mainapp:projects' %}>Projects
         </a>
     </li>
@@ -37,14 +37,21 @@
     </li>
     <li class="nav-item">
         <a class={% if request.resolver_match.url_name == 'contacts' %} 'nav-link nav-link_active'
-                {% else %} nav-link
-                {% endif %}
+        {% else %} nav-link
+        {% endif %}
            href={% url 'mainapp:contacts' %}>Contacts</a>
     </li>
     {% if user.is_authenticated %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'auth:edit' %}">
                 {{ user.username|default:'User' }}
+            </a>
+        </li>
+    {% endif %}
+    {% if user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'adminapp:users' %}">
+                admin
             </a>
         </li>
     {% endif %}
@@ -62,12 +69,12 @@
             <span>{{ basket|length }}</span>
         </a>
         <a class={% if request.resolver_match.url_name == 'main' %} 'nav-link nav-link_active'
-                {% else %} nav-link
-                {% endif %}
+        {% else %} nav-link
+        {% endif %}
            href={% url 'mainapp:main' %}>About</a>
         <a class={% if request.resolver_match.url_name == 'projects' %} 'nav-link nav-link_active'
-                {% else %} nav-link
-                {% endif %}
+        {% else %} nav-link
+        {% endif %}
            href={% url 'mainapp:projects' %}>Projects</a>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Our houses
@@ -79,8 +86,8 @@
             {% endfor %}
         </div>
         <a class={% if request.resolver_match.url_name == 'contacts' %} 'nav-link nav-link_active'
-                {% else %} nav-link
-                {% endif %}
+        {% else %} nav-link
+        {% endif %}
            href={% url 'mainapp:contacts' %}>Contacts</a>
         {% if user.is_authenticated %}
             <a class="nav-link" href="{% url 'auth:edit' %}">

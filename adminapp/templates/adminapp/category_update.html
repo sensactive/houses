@@ -1,0 +1,15 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block content %}
+  <form class="form-horizontal col-6 userInfo" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ update_form.as_p }}
+    <button class="form-control">Сохранить</button>
+  </form>
+  <button class="btn btn-round form-control last">
+    <a href="{% url 'adminapp:categories' %}">
+      к списку категорий
+    </a>
+  </button>
+{% endblock %}

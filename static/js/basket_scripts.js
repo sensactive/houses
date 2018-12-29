@@ -1,5 +1,5 @@
 window.onload = function () {
-    $('.counter').on('click', 'input[type="number"]', function () {
+    $('.counter').on('change', 'input[type="number"]', function () {
         var t_href = event.target;
 
         $.ajax({

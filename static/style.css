@@ -318,3 +318,9 @@ body {
 .removeBtn a{
     color: red;
 }
+
+.user {
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+}

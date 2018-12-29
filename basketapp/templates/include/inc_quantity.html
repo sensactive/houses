@@ -4,7 +4,7 @@
         <table class="table">
             <thead class="thead-dark">
             <tr class="text-center">
-                <th scope="col">Project</th>
+                <th scope="col" class="d-none d-sm-block">Project</th>
                 <th scope="col">Product</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
@@ -14,11 +14,11 @@
             <tbody>
             {% for item in basket_items %}
                 <tr class="text-center">
-                    <th>{{ item.product.category.name }}</th>
+                    <th class="d-none d-sm-block">{{ item.product.category.name }}</th>
                     <td>{{ item.product.name }}</td>
                     <td>
                         <div class="text-center">
-                            <input class="text-center col-2" type="number" name="{{ item.pk }}" value="{{ item.quantity }}">
+                            <input class="text-center col-3" type="number" name="{{ item.pk }}" value="{{ item.quantity }}">
                         </div>
                     </td>
                     <td>{{ item.product_cost }}</td>

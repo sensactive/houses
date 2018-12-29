@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 from basketapp.models import Basket
 
-categories = Category.objects.all()
+def get_categories():
+    return Category.objects.all().exclude(is_active=False)
 
 # Create your views here.
 def main_view(request):
@@ -10,9 +11,9 @@ def main_view(request):
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
 
-    len_items = len(categories)
+    len_items = len(get_categories())
     content = {
-        'categories': categories,
+        'categories': get_categories(),
         'len_items': len_items,
         'basket': basket,
     }
@@ -23,9 +24,9 @@ def projects_view(request):
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
 
-    len_items = len(categories)
+    len_items = len(get_categories())
     content = {
-        'categories': categories,
+        'categories': get_categories(),
         'len_items': len_items,
         'basket': basket
     }
@@ -37,7 +38,7 @@ def contacts_view(request):
         basket = Basket.objects.filter(user=request.user)
     content = {
         'basket': basket,
-        'categories': categories
+        'categories': get_categories()
     }
     return render(request, 'mainapp/contacts.html', content)
 
@@ -55,7 +56,7 @@ def products_of_categories_view(request, pk):
         'products': products,
         'category': category,
         'basket': basket,
-        'categories': categories
+        'categories': get_categories()
     }
     return render(request, 'mainapp/products.html', content)
 
@@ -65,7 +66,7 @@ def product(request, pk):
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
     content = {
-        'categories': categories,
+        'categories': get_categories(),
         'product': one_product,
         'basket': basket
     }
