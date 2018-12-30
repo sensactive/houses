@@ -66,7 +66,12 @@
 <div class="pos-f-t d-lg-none">
     <div class="collapse row bg-dark justify-content-center" id="navbarToggleExternalContent">
         <a class="nav-link" href={% url 'basketapp:view' %}><i class="fas fa-shopping-cart"></i>
-            <span>{{ basket|length }}</span>
+            {% if basket %}
+                <span>
+                    {{ basket.0.total_cost|floatformat:0 }} руб
+                    ({{ basket.0.total_quantity }} шт)
+                </span>
+            {% endif %}
         </a>
         <a class={% if request.resolver_match.url_name == 'main' %} 'nav-link nav-link_active'
         {% else %} nav-link
@@ -92,6 +97,11 @@
         {% if user.is_authenticated %}
             <a class="nav-link" href="{% url 'auth:edit' %}">
                 {{ user.username|default:'User' }}
+            </a>
+        {% endif %}
+        {% if user.is_superuser %}
+            <a class="nav-link" href="{% url 'adminapp:users' %}">
+                admin
             </a>
         {% endif %}
         {% if user.is_authenticated %}

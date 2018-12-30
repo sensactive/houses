@@ -18,16 +18,19 @@
                     <td>{{ item.product.name }}</td>
                     <td>
                         <div class="text-center">
-                            <input class="text-center col-3" type="number" name="{{ item.pk }}" value="{{ item.quantity }}">
+                            <input class="text-center col-7" type="number" name="{{ item.pk }}" value="{{ item.quantity }}">
                         </div>
                     </td>
                     <td>{{ item.product_cost }}</td>
                     <td>
-                        <button class="btn btn-round removeBtn">
-                            <a href="{% url 'basketapp:remove' pk=item.pk %}" class="">
+                        <button class="btn btn-round removeBtn d-none d-sm-flex">
+                            <a href="{% url 'basketapp:remove' pk=item.pk %}">
                                 удалить
                             </a>
                         </button>
+                        <a href="{% url 'basketapp:remove' pk=item.pk %}" class="removeIcon">
+                            <i class="fas fa-window-close d-sm-none"></i>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}

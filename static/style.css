@@ -324,3 +324,7 @@ body {
     font-weight: bold;
     color: white;
 }
+
+.removeIcon {
+    color: red;
+}
