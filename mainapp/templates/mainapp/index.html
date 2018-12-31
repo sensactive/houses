@@ -1,5 +1,6 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+{% load bootstrap4 %}
 {% block content %}
     <div class="content">
         {% include 'include/inc_logo.html' %}
@@ -23,7 +24,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="about text-center d-flex justify-content-center">
+        <div class="about text-center d-flex">
             <div class="aboutCont d-flex justify-content-center align-items-center">
                 <div class="aboutHead">ABOUT</div>
                 <p>
@@ -80,14 +81,10 @@
                     <img class="d-flex" src={% static "images/Group-right.png" %} alt="rightPic">
                 </div>
             </div>
-            <div class="galleryPic d-flex">
-                <div>
-                    <a class="left d-flex align-items-end flex-column" href="#"><img src={% static "images/gallery/1.jpg" %} alt="1.jpg"></a>
-                </div>
-                <div class="right d-flex flex-column justify-content-between">
-                    <a href="#"><img class="d-flex" src={% static "images/gallery/2.jpg" %} alt="2.jpg"></a>
-                    <a href="#"><img class="d-flex" src={% static "images/gallery/3.jpg" %} alt="3.jpg"></a>
-                </div>
+            <div class="row d-flex justify-content-between align-content-beetwen galleryItems">
+                {% for product in products %}
+                    <a class="col-4 galleryPic" href='{% url 'mainapp:product' pk=product.pk %}'><img class="img-fluid rounded" src={{ product.img.url }} alt="{{ product.name }}.jpg"></a>
+                {% endfor %}
             </div>
         </div>
     </div>

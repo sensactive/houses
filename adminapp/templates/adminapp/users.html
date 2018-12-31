@@ -5,22 +5,22 @@
     <h2 class="text-center">Users</h2>
     <table class="table">
         <thead class="thead-dark">
-        <tr>
-            <th scope="col">Root</th>
+        <tr class="text-center">
+            <th class="d-none d-lg-table-cell" scope="col">Root</th>
             <th scope="col">Login</th>
-            <th scope="col">Avatar</th>
-            <th scope="col">Username</th>
-            <th scope="col">Age</th>
-            <th scope="col">Email</th>
-            <th scope="col">Logged</th>
+            <th class="d-none d-lg-table-cell" scope="col">Avatar</th>
+            <th class="d-none d-lg-table-cell" scope="col">Username</th>
+            <th class="d-none d-lg-table-cell" scope="col">Age</th>
+            <th class="d-none d-lg-table-cell" scope="col">Email</th>
+            <th class="d-none d-lg-table-cell" scope="col">Logged</th>
             <th scope="col">Status</th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         {% for object in objects %}
-            <tr>
-                <th scope="row">
+            <tr class="text-center">
+                <th class="d-none d-lg-table-cell" scope="row">
                     {% if object.is_superuser %}
                         admin
                     {% else %}
@@ -30,14 +30,14 @@
                 <td>
                     <p><strong>{{ object.username }}</strong></p>
                 </td>
-                <td>
+                <td class="d-none d-lg-table-cell">
                     {% if object.avatar %}
                         <a href="/media/{{ object.avatar }}" target="_blank">avatar</a>
                     {% else %}
                         No avatar
                     {% endif %}
                 </td>
-                <td>
+                <td class="d-none d-lg-table-cell">
                     <p>
                         {% if object.first_name %}
                             <b>{{ object.first_name|title }}</b>
@@ -47,9 +47,9 @@
                         {% endif %}
                     </p>
                 </td>
-                <td>{{ object.age }} лет</td>
-                <td>{{ object.email }}</td>
-                <td>{{ object.last_login }}</td>
+                <td class="d-none d-lg-table-cell">{{ object.age }} лет</td>
+                <td class="d-none d-lg-table-cell">{{ object.email }}</td>
+                <td class="d-none d-lg-table-cell">{{ object.last_login }}</td>
                 <td>
                     {% if object.is_active == True %}
                     Active
@@ -59,13 +59,15 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary">
-                            <a class="user" href={% url 'adminapp:user_update' pk=object.pk %}>
+                        <button type="button" class="btn btn-secondary removeBtn">
+                            <a class="d-lg-none" href={% url 'adminapp:user_update' pk=object.pk %}><i class="fas fa-edit"></i></a>
+                            <a class="user d-none d-lg-block" href={% url 'adminapp:user_update' pk=object.pk %}>
                                 Edit
                             </a>
                         </button>
-                        <button type="button" class="btn btn-secondary">
-                            <a class="user" href={% url 'adminapp:user_delete' pk=object.pk %}>
+                        <button type="button" class="btn btn-secondary editBtn">
+                            <a class="d-lg-none" href={% url 'adminapp:user_update' pk=object.pk %}><i class="far fa-window-close"></i></a>
+                            <a class="user d-none d-lg-block" href={% url 'adminapp:user_delete' pk=object.pk %}>
                                 Delete
                             </a>
                         </button>

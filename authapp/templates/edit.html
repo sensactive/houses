@@ -4,6 +4,7 @@
     <form class="form-horizontal col-6 userInfo" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ edit_form.as_p }}
+        <div class="user_avatar col-6 userInfo"><img src="/media/{{ user.avatar }}" alt="No Avatar"></div>
         <button class="form-control">сохранить</button>
     </form>
     <button class="btn btn-round form-control last register">
@@ -11,5 +12,4 @@
             на главную
         </a>
     </button>
-    <div class="user_avatar col-6 userInfo"><img src="/media/{{ user.avatar }}" alt="No Avatar"></div>
 {% endblock %}

@@ -7,22 +7,22 @@
         <thead class="thead-dark">
         <tr class="text-center">
             <th scope="col">Name</th>
-            <th scope="col">Info</th>
-            <th scope="col">Price</th>
-            <th scope="col">Image</th>
+            <th class="d-none d-lg-table-cell" scope="col">Info</th>
+            <th class="d-none d-lg-table-cell" scope="col">Price</th>
+            <th class="d-none d-lg-table-cell" scope="col">Image</th>
             <th scope="col">Status</th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         {% for object in objects %}
-            <tr>
+            <tr class="text-center">
                 <th scope="row">{{ object.name }}</th>
-                <td>
+                <td class="d-none d-lg-table-cell">
                     {{ object.info }}
                 </td>
-                <td>{{ object.price }}</td>
-                <td>
+                <td class="d-none d-lg-table-cell">{{ object.price }}</td>
+                <td class="d-none d-lg-table-cell">
                     {% if object.img %}
                         <a href="/media/{{ object.img }}" target="_blank">image</a>
                     {% else %}
@@ -38,13 +38,15 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary">
-                            <a class="user" href={% url 'adminapp:category_update' pk=object.pk %}>
+                        <button type="button" class="btn btn-secondary editBtn">
+                            <a class="d-lg-none" href={% url 'adminapp:category_update' pk=object.pk %}><i class="fas fa-edit"></i></a>
+                            <a class="user d-none d-lg-block" href={% url 'adminapp:category_update' pk=object.pk %}>
                                 Edit
                             </a>
                         </button>
-                        <button type="button" class="btn btn-secondary">
-                            <a class="user" href={% url 'adminapp:category_delete' pk=object.pk %}>
+                        <button type="button" class="btn btn-secondary removeBtn">
+                            <a class="d-lg-none" href={% url 'adminapp:category_delete' pk=object.pk %}><i class="far fa-window-close"></i></a>
+                            <a class="user d-none d-lg-block" href={% url 'adminapp:category_delete' pk=object.pk %}>
                                 Delete
                             </a>
                         </button>

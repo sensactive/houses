@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 from basketapp.models import Basket
+import random
 
 def get_categories():
     return Category.objects.all().exclude(is_active=False)
@@ -11,11 +12,14 @@ def main_view(request):
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
 
+    products = Product.objects.all()
+    products = random.sample(list(products), 6)
     len_items = len(get_categories())
     content = {
         'categories': get_categories(),
         'len_items': len_items,
         'basket': basket,
+        'products': products
     }
     return render(request, 'mainapp/index.html',  content)
 

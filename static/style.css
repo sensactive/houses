@@ -203,17 +203,9 @@ body {
 }
 
 .galleryPic {
-    padding-top: 50px;
+    padding: 5px 5px!important;
 }
 
-.galleryPic .left img{
-    width: 80%;
-    border-right: 8px #ffffff solid;
-}
-
-.galleryPic .right img {
-    width: 81%;
-}
 
 .footer {
     height: 100px;
@@ -319,6 +311,10 @@ body {
     color: red;
 }
 
+.editBtn a{
+    color: white;
+}
+
 .user {
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
     font-weight: bold;
@@ -327,4 +323,8 @@ body {
 
 .removeIcon {
     color: red;
+}
+
+.galleryItems {
+    margin: 5px 20px;
 }
