@@ -4,7 +4,7 @@ from mainapp.models import Product, Category
 from django.urls import reverse
 from authapp.forms import ShopUserRegisterForm
 from django.contrib.auth.decorators import user_passes_test
-from adminapp.forms import ShopUserAdminEditForm, CategoryAdminEditForm
+from adminapp.forms import ShopUserAdminEditForm, CategoryAdminEditForm, ProductAdminEditForm
 from basketapp.models import Basket
 from mainapp.views import get_categories
 
@@ -184,17 +184,15 @@ def category_delete(request, pk):
 
 
 @user_passes_test(lambda u: u.is_superuser)
-def products(request, pk):
+def products(request):
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
 
-    category = get_object_or_404(Category, pk=pk)
-    products_list = Product.objects.filter(category__pk=pk).order_by('name')
+    products_list = Product.objects.all().order_by('category__name')
 
     content = {
         'categories': get_categories(),
-        'category': category,
         'objects': products_list,
         'basket': basket
     }
@@ -203,20 +201,72 @@ def products(request, pk):
 
 
 @user_passes_test(lambda u: u.is_superuser)
-def product_create(request, pk):
-    pass
+def product_create(request):
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
+
+    if request.method == 'POST':
+        product_form = ProductAdminEditForm(request.POST, request.FILES)
+        if product_form.is_valid():
+            product_form.save()
+            return HttpResponseRedirect(reverse('adminapp:products'))
+    else:
+        product_form = ProductAdminEditForm()
+
+    content = {
+        'categories': get_categories(),
+        'update_form': product_form,
+        'basket': basket
+    }
+    return render(request, 'adminapp/product_update.html', content)
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def product_read(request, pk):
-    pass
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def product_update(request, pk):
-    pass
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
+
+    edit_product = get_object_or_404(Product, pk=pk)
+    if request.method == 'POST':
+        edit_form = ProductAdminEditForm(request.POST, request.FILES, instance=edit_product)
+        if edit_form.is_valid():
+            edit_form.save()
+            return HttpResponseRedirect(reverse('adminapp:product_update', args=[edit_product.pk]))
+    else:
+        edit_form = CategoryAdminEditForm(instance=edit_product)
+
+    content = {
+        'categories': get_categories(),
+        'update_form': edit_form,
+        'basket': basket
+    }
+
+    return render(request, 'adminapp/product_update.html', content)
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def product_delete(request, pk):
-    pass
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
+
+    product = get_object_or_404(Product, pk=pk)
+
+    if request.method == 'POST':
+        # user.delete()
+        # вместо удаления лучше сделаем неактивным
+        product.is_active = False
+        product.save()
+        return HttpResponseRedirect(reverse('adminapp:products'))
+
+    content = {
+        'categories': get_categories(),
+        'product_to_delete': product,
+        'basket': basket
+    }
+
+    return render(request, 'adminapp/product_delete.html', content)

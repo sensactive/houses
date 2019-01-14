@@ -12,7 +12,7 @@ def main_view(request):
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
 
-    products = Product.objects.all()
+    products = Product.objects.filter(is_active=True)
     products = random.sample(list(products), 6)
     len_items = len(get_categories())
     content = {
@@ -51,11 +51,11 @@ def products_of_categories_view(request, pk):
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
     if pk == '0':
-        products = Product.objects.all()
+        products = Product.objects.filter(is_active=True)
         category = {'name': 'All'}
     else:
         category = Category.objects.get(pk=pk)
-        products = Product.objects.filter(category=category)
+        products = Product.objects.filter(category=category, is_active=True)
     content = {
         'products': products,
         'category': category,

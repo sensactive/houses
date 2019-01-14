@@ -13,7 +13,7 @@ def basket(request):
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
-    basket_items = Basket.objects.filter(user=request.user). \
+    basket_items = Basket.objects.filter(user=request.user, product__is_active=True). \
         order_by('product__category')
 
     content = {
@@ -27,7 +27,6 @@ def basket(request):
 
 @login_required
 def basket_add(request, pk):
-
     product = get_object_or_404(Product, pk=pk)
     old_basket_item = Basket.objects.filter(user=request.user, product=product)
     if old_basket_item:
@@ -63,7 +62,7 @@ def basket_edit(request, pk, quantity):
         else:
             new_basket_item.delete()
 
-        basket_items = Basket.objects.filter(user=request.user). \
+        basket_items = Basket.objects.filter(user=request.user, product__is_active=True). \
             order_by('product__category')
 
         content = {

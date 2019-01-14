@@ -59,18 +59,20 @@
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-secondary removeBtn">
+                        <button type="button" class="btn btn-secondary editBtn">
                             <a class="d-lg-none" href={% url 'adminapp:user_update' pk=object.pk %}><i class="fas fa-edit"></i></a>
                             <a class="user d-none d-lg-block" href={% url 'adminapp:user_update' pk=object.pk %}>
                                 Edit
                             </a>
                         </button>
-                        <button type="button" class="btn btn-secondary editBtn">
-                            <a class="d-lg-none" href={% url 'adminapp:user_update' pk=object.pk %}><i class="far fa-window-close"></i></a>
-                            <a class="user d-none d-lg-block" href={% url 'adminapp:user_delete' pk=object.pk %}>
-                                Delete
-                            </a>
-                        </button>
+                        {% if object.is_active %}
+                            <button type="button" class="btn btn-secondary removeBtn">
+                                <a class="d-lg-none" href={% url 'adminapp:user_update' pk=object.pk %}><i class="far fa-window-close"></i></a>
+                                <a class="user d-none d-lg-block" href={% url 'adminapp:user_delete' pk=object.pk %}>
+                                    Delete
+                                </a>
+                            </button>
+                        {% endif %}
                     </div>
                 </td>
             </tr>

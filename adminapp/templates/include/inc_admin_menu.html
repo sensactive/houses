@@ -11,4 +11,10 @@
         {% endif %}
            href="{% url 'adminapp:categories' %}">Categories</a>
     </li>
+    <li class="nav-item">
+        <a class={% if request.resolver_match.url_name == 'products' %} 'nav-link nav-link_active'
+        {% else %} nav-link
+        {% endif %}
+           href="{% url 'adminapp:products' %}">Products</a>
+    </li>
 </ul>

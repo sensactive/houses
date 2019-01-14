@@ -1,47 +1,70 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
-
 {% block content %}
-  <div class="products_list">
-    <button class="new_product">
-      <a href={% url 'adminapp:product_create' pk=category.pk %}>
-        новый продукт
-      </a>
-    </button>
-		
-    {% for object in objects %}
-      <div class="product_record">
-        <img 
-          src="{{object.img.url|default:'products_images/default.jpg'}}"
-          alt="{{ object.name }}">
-        <div class="product_name">
-          {{ object.name|title }}
-        </div>
-        <div class="product_actions">
-          <button>
-            <a href={% url 'adminapp:product_read' pk=object.pk %}>
-              подробнее
+    {% include 'include/inc_admin_menu.html' %}
+    <h2 class="text-center">Products</h2>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr class="text-center">
+            <th scope="col">Category</th>
+            <th scope="col">Name</th>
+            <th class="d-none d-lg-table-cell" scope="col">Info</th>
+            <th class="d-none d-lg-table-cell" scope="col">Price</th>
+            <th class="d-none d-lg-table-cell" scope="col">Image</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in objects %}
+            <tr class="text-center">
+                <th scope="row">{{ object.category.name }}</th>
+                <th scope="row">{{ object.name }}</th>
+                <td class="d-none d-lg-table-cell">
+                    {{ object.info }}
+                </td>
+                <td class="d-none d-lg-table-cell">{{ object.price }}</td>
+                <td class="d-none d-lg-table-cell">
+                    {% if object.img %}
+                        <a href="/media/{{ object.img }}" target="_blank">image</a>
+                    {% else %}
+                        No image
+                    {% endif %}
+                </td>
+                <td>
+                    {% if object.is_active == True %}
+                    Active
+                    {% else %}
+                    No active
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-secondary editBtn">
+                            <a class="d-lg-none" href={% url 'adminapp:product_update' pk=object.pk %}><i class="fas fa-edit"></i></a>
+                            <a class="user d-none d-lg-block" href={% url 'adminapp:product_update' pk=object.pk %}>
+                                Edit
+                            </a>
+                        </button>
+                        {% if object.is_active %}
+                            <button type="button" class="btn btn-secondary removeBtn">
+                                <a class="d-lg-none" href={% url 'adminapp:product_delete' pk=object.pk %}><i class="far fa-window-close"></i></a>
+                                <a class="user d-none d-lg-block" href={% url 'adminapp:product_delete' pk=object.pk %}>
+                                    Delete
+                                </a>
+                            </button>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-center">
+        <button type="button" class="btn btn-secondary">
+            <a class="user" href={% url 'adminapp:product_create' %}>
+                New Product
             </a>
-          </button>
-          <button>
-            <a href={% url 'adminapp:product_update' pk=object.pk %}>
-              редактировать
-            </a>
-          </button>
-          <button>
-            <a href={% url 'adminapp:product_delete' pk=object.pk %}>
-              удалить
-            </a>
-          </button>
-        </div>
-        <div class="summary">
-          <b>цена</b>
-          <p>{{ object.price }} руб</p>
-        </div>
-        <div class="product_desc">
-          {{ object.info|title }}
-        </div>
-      </div>
-    {% endfor%}
-  </div>
+        </button>
+    </div>
 {% endblock %}
