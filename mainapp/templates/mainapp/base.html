@@ -19,7 +19,7 @@
 <body>
 <div class="container">
     <div class="header">
-        {% include 'include/inc_menu.html' %}
+        {% include 'mainapp/include/inc_menu.html' %}
         <div class="info row text-center">
             <div class="phone col-lg-4">+2 495 <b>134-27-72</b></div>
             <a class="col-lg-4" href={% url 'mainapp:main' %}>
@@ -34,7 +34,7 @@
     </div>
     {% block content %}
     {% endblock %}
-    {% include 'include/inc_footer.html' %}
+    {% include 'mainapp/include/inc_footer.html' %}
 </div>
 </body>
 </html>

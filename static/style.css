@@ -328,3 +328,15 @@ body {
 .galleryItems {
     margin: 5px 20px;
 }
+
+.pages {
+    margin: 20px 0;
+}
+
+.pag {
+    margin: auto;
+}
+
+.pageActive:first-letter {
+    color: #8fc74a;
+}

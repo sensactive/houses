@@ -1,7 +1,7 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 {% block content %}
-    {% include 'include/inc_admin_menu.html' %}
+    {% include 'adminapp/include/inc_admin_menu.html' %}
     <h2 class="text-center">Users</h2>
     <table class="table">
         <thead class="thead-dark">
@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for object in objects %}
+        {% for object in object_list %}
             <tr class="text-center">
                 <th class="d-none d-lg-table-cell" scope="row">
                     {% if object.is_superuser %}

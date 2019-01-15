@@ -4,9 +4,9 @@
 
 {% block content %}
     <div class="text-center">
-        Уверены, что хотите удалить {{ category_to_delete.username }}
+        Уверены, что хотите удалить {{ object.name }}
         ?
-        <form action="{% url 'adminapp:category_delete' pk=category_to_delete.pk %}"
+        <form action="{% url 'adminapp:category_delete' pk=object.pk %}"
               method="post">
             {% csrf_token %}
             <input class="btn btn-danger" type="submit" value="удалить">

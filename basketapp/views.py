@@ -22,7 +22,7 @@ def basket(request):
         'categories': categories
     }
 
-    return render(request, 'basket.html', content)
+    return render(request, 'basketapp/basket.html', content)
 
 
 @login_required
@@ -69,6 +69,6 @@ def basket_edit(request, pk, quantity):
             'basket_items': basket_items,
         }
 
-        result = render_to_string('include/inc_quantity.html', content)
+        result = render_to_string('basketapp/include/inc_quantity.html', content)
 
         return JsonResponse({'result': result})

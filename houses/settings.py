@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'zls=yo$g4#c06ff_=bptv2ld0f_(e_ze)!5&gdf4n+t$@0hi5='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['sensactive2016.pythonanywhere.com', '127.0.0.1']
 

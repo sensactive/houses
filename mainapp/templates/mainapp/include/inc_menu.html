@@ -28,9 +28,9 @@
             Our houses
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href={% url 'mainapp:products_of_categories' pk=0 %}>All houses</a>
+            <a class="dropdown-item" href={% url 'mainapp:page' pk=0 page=1 %}>All houses</a>
             {% for cat in categories %}
-                <a class="dropdown-item" href={% url 'mainapp:products_of_categories' pk=cat.pk %}>Project {{ cat.name }}</a>
+                <a class="dropdown-item" href={% url 'mainapp:page' pk=cat.pk page=1 %}>Project {{ cat.name }}</a>
             {% endfor %}
         </div>
     </li>
@@ -84,9 +84,9 @@
             Our houses
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href={% url 'mainapp:products_of_categories' pk=0 %}>All houses</a>
+            <a class="dropdown-item" href={% url 'mainapp:page' pk=0 page=1 %}>All houses</a>
             {% for cat in categories %}
-                <a class="dropdown-item" href={% url 'mainapp:products_of_categories' pk=cat.pk %}>Project {{ cat.name }}</a>
+                <a class="dropdown-item" href={% url 'mainapp:page' pk=cat.pk page=1 %}>Project {{ cat.name }}</a>
             {% endfor %}
         </div>
         <a class={% if request.resolver_match.url_name == 'contacts' %} 'nav-link nav-link_active'

@@ -1,0 +1,27 @@
+<div class="col-md-12 text-center pages">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if products.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'mainapp:page' category.pk products.previous_page_number %}" aria-label="Previous">
+                        <span class="nav-link" aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            {% endif %}
+            <li class="page-item">
+                <a class="page-link" href="#">
+                    <span class="nav-link pageActive">{{ products.number }} из {{ products.paginator.num_pages }}</span>
+                </a>
+            </li>
+            {% if products.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'mainapp:page' category.pk  products.next_page_number %}" aria-label="Next">
+                        <span class="nav-link" aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
