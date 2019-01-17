@@ -69,9 +69,11 @@ class UsersListView(ListView):
 
 class UserCreateView(CreateView):
     model = ShopUser
+    form_class = ShopUserRegisterForm
     template_name = 'adminapp/user_update.html'
     success_url = reverse_lazy('adminapp:users')
-    fields = '__all__'
+
+
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, *args, **kwargs):
@@ -111,9 +113,9 @@ class UserCreateView(CreateView):
 
 class UserUpdateView(UpdateView):
     model = ShopUser
+    form_class = ShopUserAdminEditForm
     template_name = 'adminapp/user_update.html'
     success_url = reverse_lazy('adminapp:users')
-    fields = '__all__'
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, *args, **kwargs):
@@ -234,9 +236,9 @@ class CategoryListView(ListView):
 
 class CategoryCreateView(CreateView):
     model = Category
+    form_class = CategoryAdminEditForm
     template_name = 'adminapp/category_update.html'
     success_url = reverse_lazy('adminapp:categories')
-    fields = '__all__'
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, *args, **kwargs):
@@ -276,9 +278,9 @@ class CategoryCreateView(CreateView):
 
 class CategoryUpdateView(UpdateView):
     model = Category
+    form_class = CategoryAdminEditForm
     template_name = 'adminapp/category_update.html'
     success_url = reverse_lazy('adminapp:categories')
-    fields = '__all__'
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, *args, **kwargs):
@@ -398,9 +400,9 @@ class ProductListView(ListView):
 
 class ProductCreateView(CreateView):
     model = Product
+    form_class = ProductAdminEditForm
     template_name = 'adminapp/product_update.html'
     success_url = reverse_lazy('adminapp:product')
-    fields = '__all__'
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, *args, **kwargs):
@@ -440,9 +442,9 @@ class ProductCreateView(CreateView):
 
 class ProductUpdateView(UpdateView):
     model = Product
+    form_class = ProductAdminEditForm
     template_name = 'adminapp/product_update.html'
     success_url = reverse_lazy('adminapp:products')
-    fields = '__all__'
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, *args, **kwargs):

@@ -7,7 +7,7 @@ from mainapp.models import Category, Product
 class ShopUserAdminEditForm(ShopUserEditForm):
 
     class Meta:
-        model=ShopUser
+        model = ShopUser
         fields = '__all__'
 
 
