@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IHMz?=
+From: sensor14@list.ru
+To: test@testtest.ru
+Date: Wed, 30 Jan 2019 04:43:38 -0000
+Message-ID: <154882341894.1116.13527205017584174707@sensactive>
+
+Для подтверждения учетной записи s3 на портале http://localhost:8000 перейдите по ссылке: 
+http://localhost:8000/auth/verify/18/af72da01d08bd92b45c0b8aeae8ba9ad29607429/
+-------------------------------------------------------------------------------

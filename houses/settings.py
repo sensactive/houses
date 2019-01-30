@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'zls=yo$g4#c06ff_=bptv2ld0f_(e_ze)!5&gdf4n+t$@0hi5='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['sensactive2016.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['sensactive2016.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -66,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'mainapp.context_processors.basket',
+                'mainapp.context_processors.get_categories',
             ],
         },
     },
@@ -128,3 +130,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
 LOGIN_URL = '/auth/login/'
+
+DOMAIN_NAME = 'http://localhost:8000'
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = 'sensor14@list.ru'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_SSL = True
+
+# вариант python -m smtpd -n -c DebuggingServer localhost:25
+# EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
+
+# вариант логирования сообщений почты в виде файлов вместо отправки
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/email-messages/'

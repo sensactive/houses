@@ -10,15 +10,11 @@ categories = Category.objects.all()
 
 @login_required
 def basket(request):
-    basket = []
-    if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
     basket_items = Basket.objects.filter(user=request.user, product__is_active=True). \
         order_by('product__category')
 
     content = {
         'basket_items': basket_items,
-        'basket': basket,
         'categories': categories
     }
 

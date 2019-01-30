@@ -9,8 +9,6 @@ from django.urls import reverse
 from authapp.forms import ShopUserRegisterForm
 from django.contrib.auth.decorators import user_passes_test
 from adminapp.forms import ShopUserAdminEditForm, CategoryAdminEditForm, ProductAdminEditForm
-from basketapp.models import Basket
-from mainapp.views import get_categories
 
 # @user_passes_test(lambda u: u.is_superuser)
 # def users(request):
@@ -31,6 +29,7 @@ from mainapp.views import get_categories
 class UsersListView(ListView):
     model = ShopUser
     template_name = 'adminapp/users.html'
+    paginate_by = 5
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, *args, **kwargs):
@@ -38,8 +37,7 @@ class UsersListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
+        # context['categories'] = get_categories()   // эта часть вынесена в контекстный процессор в mainapp
 
         return context
 
@@ -81,8 +79,6 @@ class UserCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
@@ -123,8 +119,6 @@ class UserUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
@@ -164,8 +158,6 @@ class UserDeleteView(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
@@ -203,8 +195,6 @@ class CategoryListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
@@ -246,8 +236,6 @@ class CategoryCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
@@ -288,8 +276,6 @@ class CategoryUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
@@ -329,8 +315,6 @@ class CategoryDeleteView(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
@@ -370,8 +354,6 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
@@ -410,8 +392,6 @@ class ProductCreateView(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
@@ -452,8 +432,6 @@ class ProductUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
@@ -493,8 +471,6 @@ class ProductDeleteView(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = get_categories()
-        context['basket'] = Basket.objects.filter(user=self.request.user)
 
         return context
 
