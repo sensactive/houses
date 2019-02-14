@@ -291,14 +291,6 @@ body {
     padding: 0;
 }
 
-.userInfo button{
-    background: #8fc74a;
-}
-
-.register {
-    background: none!important;
-}
-
 .product img {
     border-radius: 25px;
 }
@@ -339,4 +331,12 @@ body {
 
 .pageActive:first-letter {
     color: #8fc74a;
+}
+
+.btnToOrders {
+    color: #000 !important;
+}
+
+.btn-default {
+    background: #8fc74a;
 }

@@ -19,6 +19,21 @@
                     зарегистрироваться
                 </a>
             </button>
+            <button class="btn btn-round form-control register">
+                <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
+                    Google sign in
+                </a>
+            </button>
+            <button class="btn btn-round form-control register">
+                <a href="{% url 'social:begin' 'instagram' %}?next=/">
+                    Instagram sign in
+                </a>
+            </button>
+{#            <button class="btn btn-round form-control register">#}
+{#                <a href="{% url 'social:begin' 'odnoklassniki-oauth2' %}?next=/">#}
+{#                    Odnoklassniki sign in#}
+{#                </a>#}
+{#            </button>#}
         </div>
     </div>
 {% endblock %}
