@@ -18,6 +18,7 @@ class Product(models.Model):
     price = models.PositiveIntegerField(verbose_name='Цена')
     img = models.ImageField(upload_to='products/%Y/%m/%d', verbose_name='Картинка продукта')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Проект')
+    quantity = models.PositiveIntegerField(verbose_name='Количество на складе', default=0)
     is_active = models.BooleanField(verbose_name='активен', default=True)
     def __str__(self):
-        return self.name
+        return f'{self.name} ({self.quantity})'

@@ -5,4 +5,12 @@
         <h2>Корзина</h2>
     </div>
     {% include 'basketapp/include/inc_quantity.html' %}
+    <div class="text-center">
+        <button class="btn btn-default btn-round">
+            <a class="btnToOrders" href="{% url 'ordersapp:order_create' %}">
+                Создать заказ
+            </a>
+        </button>
+    </div>
+
 {% endblock %}
