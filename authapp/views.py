@@ -97,10 +97,10 @@ def edit(request):
 def send_verify_mail(user):
     verify_link = reverse('auth:verify', args=[user.pk, user.activation_key])
 
-    title = f'Подтверждение учетной записи {user.username}'
+    title = 'Подтверждение учетной записи {}'.format(user.username)
 
-    message = f'Для подтверждения учетной записи {user.username} на портале \
-{settings.DOMAIN_NAME} перейдите по ссылке: \n{settings.DOMAIN_NAME}{verify_link}'
+    message = 'Для подтверждения учетной записи {} на портале \
+{} перейдите по ссылке: \n{}{}'.format(user.username, settings.DOMAIN_NAME, settings.DOMAIN_NAME, verify_link)
 
     return send_mail(title, message, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
 
@@ -114,10 +114,10 @@ def verify(request, pk, activation_key):
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return render(request, 'verification.html')
         else:
-            print(f'error activation user: {user}')
+            print('error activation user: {}'.format(user))
             return render(request, 'verification.html')
     except Exception as e:
-        print(f'error activation user : {e.args}')
+        print('error activation user : {}'.format(e.args))
         return HttpResponseRedirect(reverse('authapp:login'))
 
 

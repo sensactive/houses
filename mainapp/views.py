@@ -7,7 +7,8 @@ import random
 # Create your views here.
 def main_view(request):
     products = Product.objects.filter(is_active=True)
-    products = random.sample(list(products), 6)
+    if products:
+        products = random.sample(list(products), 6)
     content = {
         'products': products
     }

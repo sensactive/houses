@@ -9,6 +9,7 @@ from django.urls import reverse
 from authapp.forms import ShopUserRegisterForm
 from django.contrib.auth.decorators import user_passes_test
 from adminapp.forms import ShopUserAdminEditForm, CategoryAdminEditForm, ProductAdminEditForm
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # @user_passes_test(lambda u: u.is_superuser)
 # def users(request):
@@ -461,7 +462,7 @@ class ProductUpdateView(UpdateView):
 
 
 class ProductDeleteView(DeleteView):
-    model = Category
+    model = Product
     template_name = 'adminapp/product_delete.html'
     success_url = reverse_lazy('adminapp:products')
 

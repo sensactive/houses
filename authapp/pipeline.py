@@ -20,11 +20,10 @@ def save_user_profile(backend, user, response, *args, **kwargs):
             if int(minAge) < 18:
                 user.delete()
                 raise AuthForbidden('social_core.backends.google.GoogleOAuth2')
-    # if backend.
-    if 'data' in response.keys():
-        if 'bio' in response['data'].keys():
-            print('ЗДЕСЬ!!!!!!!!!!!!!')
-            user.shopuserprofile.aboutMe = response['data']['bio']
-            user.save()
+
+        if 'data' in response.keys():
+            if 'bio' in response['data'].keys():
+                user.shopuserprofile.aboutMe = response['data']['bio']
+                user.save()
 
     return

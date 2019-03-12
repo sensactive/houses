@@ -20,5 +20,10 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Проект')
     quantity = models.PositiveIntegerField(verbose_name='Количество на складе', default=0)
     is_active = models.BooleanField(verbose_name='активен', default=True)
+
+    @staticmethod
+    def get_items():
+        return Product.objects.filter(is_active=True).order_by('category', 'name')
+
     def __str__(self):
-        return f'{self.name} ({self.quantity})'
+        return '{} ({})'.format(self.name, self.quantity)

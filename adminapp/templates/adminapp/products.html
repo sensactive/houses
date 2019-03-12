@@ -18,6 +18,7 @@
         </thead>
         <tbody>
         {% for object in object_list %}
+            {{ object }}{{ object.category }}
             <tr class="text-center">
                 <th scope="row">{{ object.category.name }}</th>
                 <th scope="row">{{ object.name }}</th>
