@@ -14,7 +14,6 @@ def basket(request):
 
     content = {
         'basket_items': basket_items,
-        'categories': categories
     }
 
     return render(request, 'basketapp/basket.html', content)
