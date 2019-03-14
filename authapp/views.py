@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm, ShopUserProfileEditForm
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from basketapp.models import Basket
 from mainapp.models import Category
@@ -72,26 +73,26 @@ def register(request):
 
     return render(request, 'register.html', content)
 
-
-def edit(request):
-    basket = []
-    if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
-    if request.method == 'POST':
-        edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
-        if edit_form.is_valid():
-            edit_form.save()
-            return HttpResponseRedirect(reverse('auth:edit'))
-    else:
-        edit_form = ShopUserEditForm(instance=request.user)
-
-    content = {
-        'edit_form': edit_form,
-        'basket': basket,
-        'categories': categories
-    }
-
-    return render(request, 'edit.html', content)
+# @login_required
+# def edit(request):
+#     basket = []
+#     if request.user.is_authenticated:
+#         basket = Basket.objects.filter(user=request.user)
+#     if request.method == 'POST':
+#         edit_form = ShopUserEditForm(request.POST, request.FILES, instance=request.user)
+#         if edit_form.is_valid():
+#             edit_form.save()
+#             return HttpResponseRedirect(reverse('auth:edit'))
+#     else:
+#         edit_form = ShopUserEditForm(instance=request.user)
+#
+#     content = {
+#         'edit_form': edit_form,
+#         'basket': basket,
+#         'categories': categories
+#     }
+#
+#     return render(request, 'edit.html', content)
 
 
 def send_verify_mail(user):
@@ -122,6 +123,7 @@ def verify(request, pk, activation_key):
 
 
 @transaction.atomic
+@login_required
 def edit(request):
 
     if request.method == 'POST':
