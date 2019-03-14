@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.utils.functional import cached_property
+
 from mainapp.models import Product
 
 # Create your models here.
@@ -20,32 +22,59 @@ class Basket(models.Model):
     add_datetime = models.DateTimeField(verbose_name='время', auto_now_add=True)
     objects = BasketQuerySet.as_manager()
 
-    @property
+    @cached_property
     def product_cost(self):
         "return cost of all products this type"
         return self.product.price * self.quantity
 
+
+    # !!!!!!!УВЕЛИЧИВАЕТ ЧИСЛО ДУБЛЕЙ, НО ТАКЖЕ РАБОЧИЙ ВАРИАНТ
+    # @property
+    # def total_quantity(self):
+    #     "return total quantity for user"
+    #     _items = Basket.objects.filter(user=self.user, product__is_active=True)
+    #     _totalquantity = sum(list(map(lambda x: x.quantity, _items)))
+    #     return _totalquantity
+
+    # @property
+    # def total_cost(self):
+    #     "return total cost for user"
+    #     _items = Basket.objects.filter(user=self.user, product__is_active=True)
+    #     _totalcost = sum(list(map(lambda x: x.product_cost, _items)))
+    #     return _totalcost
+
+    # @staticmethod
+    # def get_items(user):
+    #     return Basket.objects.filter(user=user).order_by('product__category')
+
+    # !!!!!!!! УМЕНЬШАЕТ ЧИСЛО ДУБЛЕЙ
+    @staticmethod
+    def get_item(pk):
+        return Basket.objects.filter(pk=pk).first()
+
+    @cached_property
+    def get_items(self):
+        return self.user.basket.select_related()
+
     @property
     def total_quantity(self):
-        "return total quantity for user"
-        _items = Basket.objects.filter(user=self.user, product__is_active=True)
+        _items = self.get_items
         _totalquantity = sum(list(map(lambda x: x.quantity, _items)))
         return _totalquantity
 
     @property
     def total_cost(self):
-        "return total cost for user"
-        _items = Basket.objects.filter(user=self.user, product__is_active=True)
+        _items = self.get_items
         _totalcost = sum(list(map(lambda x: x.product_cost, _items)))
         return _totalcost
 
-    @staticmethod
-    def get_items(user):
-        return Basket.objects.filter(user=user).order_by('product__category')
-
-    @staticmethod
-    def get_item(pk):
-        return Basket.objects.filter(pk=pk).first()
+    @cached_property
+    def get_summary(self):
+        __items = self.get_items
+        return {
+            'total_quantity': sum(list(map(lambda x: x.quantity, __items))),
+            'total_cost': sum(list(map(lambda x: x.product_cost, __items))),
+        }
 
     def save(self, *args, **kwargs):
         if self.pk:
@@ -61,3 +90,32 @@ class Basket(models.Model):
         super(self.__class__, self).delete()
 
 
+
+
+# !!!!!!!!!!ТОЖЕ РАБОЧИЙ ВАРИАНТ КЕШИРОВАНИЯ, НО ОСТАВЛЯЕТ 4 ДУБЛЯ
+# @cached_property
+#     def product_cost(self):
+#         "return cost of all products this type"
+#         return self.product.price * self.quantity
+#
+#     @cached_property
+#     def total_quantity(self):
+#         "return total quantity for user"
+#         _items = Basket.objects.filter(user=self.user, product__is_active=True).select_related('product', 'user')
+#         _totalquantity = sum(list(map(lambda x: x.quantity, _items)))
+#         return _totalquantity
+#
+#     @cached_property
+#     def total_cost(self):
+#         "return total cost for user"
+#         _items = Basket.objects.filter(user=self.user, product__is_active=True).select_related('product', 'user')
+#         _totalcost = sum(list(map(lambda x: x.product_cost, _items)))
+#         return _totalcost
+#
+#     @staticmethod
+#     def get_items(user):
+#         return Basket.objects.filter(user=user).order_by('product__category')
+#
+#     @staticmethod
+#     def get_item(pk):
+#         return Basket.objects.filter(pk=pk).first()

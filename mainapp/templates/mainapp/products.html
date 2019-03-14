@@ -1,22 +1,10 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
 {% block content %}
-    <div class="col-12 text-center"><h1>Project {{ category.name }}</h1></div>
-    <div class="typeItems row">
-        {% include 'mainapp/include/inc_pages.html' %}
-        {% for product in products %}
-
-            <div class="col-md-6 col-12 text-center">
-                <a href='{% url 'mainapp:product' pk=product.pk %}' class="category typeItem">
-                    <img src={{ product.img.url }} alt="1">
-                    <h2>{{ product.name }}</h2>
-                    <p>{{ product.info }}</p>
-                    <p class="price">Цена от: {{ product.price }} руб.</p>
-                    <a href={% url 'basketapp:add' pk=product.pk %}>
-                        <button class="itemBtn">В корзину</button>
-                    </a>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
+{#    <div class="col-12 text-center"><h1>Project {{ category.name }}</h1></div>#}
+{#    <div class="typeItems row">#}
+{#        {% include 'mainapp/include/inc_pages.html' %}#}
+        <div class="details col-12 row">
+            {% include 'mainapp/include/inc_products.html' %}
+        </div>
 {% endblock %}

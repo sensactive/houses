@@ -236,6 +236,20 @@ EMAIL_HOST_USER = 'sensactive@yandex.ru'
 EMAIL_HOST_PASSWORD = '4606441241Aa'
 EMAIL_USE_SSL = True
 
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 120
+CACHE_MIDDLEWARE_KEY_PREFIX = 'geekshop'
+
+CACHES = {
+   'default': {
+       'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+       'LOCATION': '127.0.0.1:11211',
+   }
+}
+
+LOW_CACHE = True
+
 # вариант python -m smtpd -n -c DebuggingServer localhost:25
 # EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
 

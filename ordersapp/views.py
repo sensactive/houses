@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.db import transaction
 
 from django.forms import inlineformset_factory
+from django.utils.decorators import method_decorator
 
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
@@ -12,6 +14,8 @@ from ordersapp.models import Order, OrderItem
 from ordersapp.forms import OrderItemForm
 from django.http import JsonResponse
 from mainapp.models import Product
+
+
 from django.dispatch import receiver
 from django.db.models.signals import pre_save, pre_delete
 
@@ -34,7 +38,7 @@ class OrderItemsCreate(CreateView):
         if self.request.POST:
             formset = OrderFormSet(self.request.POST)
         else:
-            basket_items = Basket.get_items(self.request.user)
+            basket_items = Basket.objects.filter(user=self.request.user).order_by('product__category')
             if len(basket_items):
                 OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=len(basket_items))
                 formset = OrderFormSet()
@@ -48,6 +52,10 @@ class OrderItemsCreate(CreateView):
 
         data['orderitems'] = formset
         return data
+
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def form_valid(self, form):
         context = self.get_context_data()
@@ -101,29 +109,34 @@ class OrderItemsUpdate(UpdateView):
 
         return super(OrderItemsUpdate, self).form_valid(form)
 
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
 class OrderDelete(DeleteView):
-   model = Order
-   success_url = reverse_lazy('ordersapp:orders_list')
+    model = Order
+    success_url = reverse_lazy('ordersapp:orders_list')
 
 
 class OrderRead(DetailView):
-   model = Order
+    model = Order
+
 
 
 def order_forming_complete(request, pk):
-   order = get_object_or_404(Order, pk=pk)
-   order.status = Order.SENT_TO_PROCEED
-   order.save()
+    order = get_object_or_404(Order, pk=pk)
+    order.status = Order.SENT_TO_PROCEED
+    order.save()
 
-   return HttpResponseRedirect(reverse('ordersapp:orders_list'))
+    return HttpResponseRedirect(reverse('ordersapp:orders_list'))
 
 def get_product_price(request, pk):
-   if request.is_ajax():
-       product = Product.objects.filter(pk=int(pk)).first()
-       if product:
-           return JsonResponse({'price': product.price})
-       else:
-           return JsonResponse({'price': 0})
+    if request.is_ajax():
+        product = Product.objects.filter(pk=int(pk)).first()
+        if product:
+            return JsonResponse({'price': product.price})
+        else:
+            return JsonResponse({'price': 0})
 
 # @receiver(pre_save, sender=OrderItem)
 # @receiver(pre_save, sender=Basket)

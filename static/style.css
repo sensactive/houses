@@ -340,3 +340,8 @@ body {
 .btn-default {
     background: #8fc74a;
 }
+
+.details {
+    margin: 0;
+    padding: 0;
+}

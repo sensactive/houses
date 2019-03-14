@@ -39,8 +39,10 @@
         <div class="totalCost nav-link">
             {% if basket_items %}
                 <div class="col-12 text-right">
-                    В корзине {{ basket_items.0.total_quantity }} товаров<br>
-                    общей стоимостью {{ basket_items.0.total_cost }} руб
+                    {% with basket_summary=basket.0.get_summary %}
+                        В корзине {{ basket_summary.total_quantity }} товаров<br>
+                        общей стоимостью {{ basket_summary.total_cost }} руб
+                    {% endwith %}
                 </div>
             {% endif %}
         </div>
