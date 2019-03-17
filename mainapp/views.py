@@ -13,51 +13,51 @@ from django.http import JsonResponse
 
 
 def get_links_menu():
-   if settings.LOW_CACHE:
-       key = 'links_menu'
-       links_menu = cache.get(key)
-       if links_menu is None:
-           links_menu = Category.objects.filter(is_active=True)
-           cache.set(key, links_menu)
-       return links_menu
-   else:
-       return Category.objects.filter(is_active=True)
+    if settings.LOW_CACHE:
+        key = 'links_menu'
+        links_menu = cache.get(key)
+        if links_menu is None:
+            links_menu = Category.objects.filter(is_active=True)
+            cache.set(key, links_menu)
+        return links_menu
+    else:
+        return Category.objects.filter(is_active=True)
 
 
 def get_category(pk):
-   if settings.LOW_CACHE:
-       key = 'category_{}'.format(pk)
-       category = cache.get(key)
-       if category is None:
-           category = get_object_or_404(Category, pk=pk)
-           cache.set(key, category)
-       return category
-   else:
-       return get_object_or_404(Category, pk=pk)
+    if settings.LOW_CACHE:
+        key = 'category_{}'.format(pk)
+        category = cache.get(key)
+        if category is None:
+            category = get_object_or_404(Category, pk=pk)
+            cache.set(key, category)
+        return category
+    else:
+        return get_object_or_404(Category, pk=pk)
 
 
 def get_products():
-   if settings.LOW_CACHE:
-       key = 'products'
-       products = cache.get(key)
-       if products is None:
-           products = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
-           cache.set(key, products)
-       return products
-   else:
-       return Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
+    if settings.LOW_CACHE:
+        key = 'products'
+        products = cache.get(key)
+        if products is None:
+            products = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
+            cache.set(key, products)
+        return products
+    else:
+        return Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
 
 
 def get_product(pk):
-   if settings.LOW_CACHE:
-       key = 'product_{}'.format(pk)
-       product = cache.get(key)
-       if product is None:
-           product = get_object_or_404(Product, pk=pk)
-           cache.set(key, product)
-       return product
-   else:
-       return get_object_or_404(Product, pk=pk)
+    if settings.LOW_CACHE:
+        key = 'product_{}'.format(pk)
+        product = cache.get(key)
+        if product is None:
+            product = get_object_or_404(Product, pk=pk)
+            cache.set(key, product)
+        return product
+    else:
+        return get_object_or_404(Product, pk=pk)
 
 
 # def get_products_orederd_by_price():
@@ -73,15 +73,15 @@ def get_product(pk):
 
 
 def get_products_in_category_orederd_by_price(pk):
-   if settings.LOW_CACHE:
-       key = 'products_in_category_orederd_by_price_{}'.format(pk)
-       products = cache.get(key)
-       if products is None:
-           products = Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True).order_by('price')
-           cache.set(key, products)
-       return products
-   else:
-       return Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True).order_by('price')
+    if settings.LOW_CACHE:
+        key = 'products_in_category_orederd_by_price_{}'.format(pk)
+        products = cache.get(key)
+        if products is None:
+            products = Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True).order_by('price')
+            cache.set(key, products)
+        return products
+    else:
+        return Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True).order_by('price')
 
 # Create your views here.
 def main_view(request):
@@ -101,31 +101,30 @@ def contacts_view(request):
 
 
 def products_ajax(request, pk=None, page=1):
-   if request.is_ajax():
-       if pk:
-           if pk == '0':
-               products = get_products()  # кэшируем продукты
-               category = {'name': 'All', 'pk': '0'}
-           else:
-               category = get_category(pk)
-               products = get_products_in_category_orederd_by_price(pk)
+    if request.is_ajax():
+        if pk == 0:
+            products = get_products()  # кэшируем продукты
+            category = {'name': 'All', 'pk': '0'}
+        else:
+            category = get_category(pk)
+            products = get_products_in_category_orederd_by_price(pk)
 
-           paginator = Paginator(products, 2)
-           try:
-               products_paginator = paginator.page(page)
-           except PageNotAnInteger:
-               products_paginator = paginator.page(1)
-           except EmptyPage:
-               products_paginator = paginator.page(paginator.num_pages)
+        paginator = Paginator(products, 2)
+        try:
+            products_paginator = paginator.page(page)
+        except PageNotAnInteger:
+            products_paginator = paginator.page(1)
+        except EmptyPage:
+            products_paginator = paginator.page(paginator.num_pages)
 
-           content = {
-               'category': category,
-               'products': products_paginator,
-           }
+        content = {
+            'category': category,
+            'products': products_paginator,
+        }
 
-           result = render_to_string('mainapp/include/inc_products.html', context=content, request=request)
+        result = render_to_string('mainapp/include/inc_products.html', context=content, request=request)
 
-           return JsonResponse({'result': result})
+        return JsonResponse({'result': result})
 
 
 def products_of_categories_view(request, pk, page=1):

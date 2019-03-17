@@ -11,7 +11,6 @@ from authapp.models import ShopUser
 from django.db import transaction
 
 
-categories = Category.objects.all()
 
 def login(request):
 
@@ -36,7 +35,6 @@ def login(request):
 
     content = {
         'login_form': login_form,
-        'categories': categories,
         'next': next
     }
 
@@ -68,7 +66,6 @@ def register(request):
 
     content = {
         'register_form': register_form,
-        'categories': categories
     }
 
     return render(request, 'register.html', content)
