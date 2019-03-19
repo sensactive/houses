@@ -232,8 +232,8 @@ DOMAIN_NAME = 'http://mydreamer.site'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'sensactive@yandex.ru'
-EMAIL_HOST_PASSWORD = '4606441241Aa'
+EMAIL_HOST_USER = 'sensactive@mydreamer.site'
+EMAIL_HOST_PASSWORD = 'geekbrains'
 EMAIL_USE_SSL = True
 
 
