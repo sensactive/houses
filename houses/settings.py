@@ -228,12 +228,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 AUTH_USER_MODEL = 'authapp.ShopUser'
 LOGIN_URL = '/auth/login/'
 
-DOMAIN_NAME = 'http://mydreamer.site'
+DOMAIN_NAME = 'http://127.0.0.1:8000'
 
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = '465'
-EMAIL_HOST_USER = 'sensactive@mydreamer.site'
-EMAIL_HOST_PASSWORD = 'geekbrains'
+EMAIL_HOST = ''
+EMAIL_PORT = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_SSL = True
 
 

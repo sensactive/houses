@@ -2,6 +2,7 @@ from django.urls import path
 from .views import main_view, projects_view, contacts_view, products_of_categories_view, product, products_ajax
 from django.views.decorators.cache import cache_page
 
+
 app_name = 'mainapp'
 
 urlpatterns = [

@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="content">
-        <div class="userInfo col-6">
+        <div class="userInfo mx-auto col-6">
             <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
                 {% csrf_token %}
                 {% if next %}

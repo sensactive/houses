@@ -4,15 +4,17 @@ from django.utils.functional import cached_property
 
 from mainapp.models import Product
 
+
 # Create your models here.
+
 
 class BasketQuerySet(models.QuerySet):
 
-   def delete(self, *args, **kwargs):
-       for object in self:
-           object.product.quantity += object.quantity
-           object.product.save()
-       super(BasketQuerySet, self).delete(*args, **kwargs)
+    def delete(self, *args, **kwargs):
+        for object in self:
+            object.product.quantity += object.quantity
+            object.product.save()
+        super(BasketQuerySet, self).delete(*args, **kwargs)
 
 
 class Basket(models.Model):
@@ -26,7 +28,6 @@ class Basket(models.Model):
     def product_cost(self):
         "return cost of all products this type"
         return self.product.price * self.quantity
-
 
     # !!!!!!!УВЕЛИЧИВАЕТ ЧИСЛО ДУБЛЕЙ, НО ТАКЖЕ РАБОЧИЙ ВАРИАНТ
     # @property
@@ -88,9 +89,6 @@ class Basket(models.Model):
         self.product.quantity += self.quantity
         self.product.save()
         super(self.__class__, self).delete()
-
-
-
 
 # !!!!!!!!!!ТОЖЕ РАБОЧИЙ ВАРИАНТ КЕШИРОВАНИЯ, НО ОСТАВЛЯЕТ 4 ДУБЛЯ
 # @cached_property
